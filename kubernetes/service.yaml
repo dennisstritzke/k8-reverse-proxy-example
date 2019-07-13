@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: example-proxy
+  name: example-proxy
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: example-proxy
+  sessionAffinity: None
+  type: ClusterIP

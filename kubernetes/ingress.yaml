@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    certmanager.k8s.io/acme-http01-ingress-class: nginx
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+  name: example-proxy
+spec:
+  rules:
+    - host: example.org
+      http:
+        paths:
+          - backend:
+              serviceName: example-proxy
+              servicePort: 80
+  tls:
+    - hosts:
+        - example.org
+        - www.example.org
+      secretName: example-proxy-ingress
